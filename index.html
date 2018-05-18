@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Red Pill</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <style>
+  	.piczo img {
+  		display: inline-block;
+  		max-width: 1000px;
+  		width: 100%;
+  	}
+
+  	.footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    text-align: center;
+    padding: 25px;
+}
+  </style>
+
+
+</head>
+
+<body>
+
+<script src="list.js"></script>
+
+<div class="jumbotron">
+  <div class="container text-center">
+    <h1>Red Pill Religion App</h1> 
+    <p>You don't have to be religious, but you don't get to lie about religion, science and history.</p>
+  </div>
+</div>
+
+<div class="container text-center">
+	<div class="col-sm-1"></div>
+	<div class="col-sm-10">
+		<p style="font-size: 250%">So why don't you try the pill? *CLICK* </p>
+	</div>
+	<div class="col-sm-1"></div>
+</div>
+
+<div class="container piczo">
+	<div class="col-sm-1"></div>
+	<div class="col-sm-10">
+		<img src="rpr11.png" class="img-responsive" id="canvas1" />
+		<img src="rpr12.png" class="img-responsive" id="canvas2" data-toggle="tooltip" title="Click me!"/>
+	</div>
+	<div class="col-sm-1"></div>
+</div>
+
+<div id="rand-div" class="container">
+		<div class="col-sm-1"></div>
+		<div class="col-sm-10">
+    		<p id="pill-rand" style="color: white; font-weight: bold; font-family: Monospace; font-size: 250%; background-color: #4C3B4D; opacity: 0.8;"></p>
+    	</div>
+    	<div class="col-sm-1"></div>
+</div>
+
+<div class="container text-center">
+	<div class="col-sm-3"></div> 
+	<div class="col-sm-6">
+	<h2>Check out other pill flavors!</h2>
+	<div class="btn-group btn-group-lg">
+		<button id="injun" type="button" class="btn btn-danger">Injun Pill</button>
+		<button id="brass" type="button" class="btn">Brass Pill</button>
+	</div>
+	  <button type="button" class="btn btn-lg btn-primary">More to come!</button>
+	</div>
+	<div class="col-sm-3"></div>
+</div>
+
+<hr>
+
+<div class="container footer">
+	<h3><a href="http://www.redpillreligion.com">Website</a> | <a href="https://www.youtube.com/user/deanesmay">Livestream</a> | <a href="https://www.patreon.com/RedPillReligion">Patreon</a></h2>
+<div>
+
+<script>
+
+
+document.getElementById('canvas2').style.display = "none";
+document.getElementById('canvas1').addEventListener("mouseover", firstCanvas);
+document.getElementById('canvas2').addEventListener("mouseout", secondCanvas);
+
+var clickSound = new Audio("https://instaud.io/_/2bVC.mp3");
+
+function firstCanvas() {
+	//canvas.style.display="none";
+	//canvas2.style.display="initial";
+	document.getElementById('canvas1').style.display = "none";
+	document.getElementById('canvas2').style.display = "initial";
+}
+
+function secondCanvas() {
+	//canvas2.style.display="none";
+	//canvas.style.display="initial";
+	document.getElementById('canvas2').style.display = "none";
+	document.getElementById('canvas1').style.display = "initial";
+}
+
+function randomizePill() {
+	var proverb = document.getElementById("pill-rand");
+	var rand = redpill[Math.floor(Math.random() * redpill.length)];
+	proverb.innerHTML = rand;
+	clickSound.pause();
+	clickSound = new Audio("https://instaud.io/_/2bVC.mp3");
+	clickSound.play();
+}
+
+function changeFlavorInjun() {
+		window.location.href = "injun.html";
+}
+
+function changeFlavorBrass() {
+		window.location.href = "brass.html";
+}
+
+
+document.getElementById('canvas2').addEventListener('click', randomizePill);
+document.getElementById('injun').addEventListener('click', changeFlavorInjun);
+document.getElementById('brass').addEventListener('click', changeFlavorBrass);
+
+//window.addEventListener('load', resize, false);
+//window.addEventListener('resize', resize, false);
+
+</script>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
+
+</body>
+</html>

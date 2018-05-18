@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Brass Pill</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="list.js"></script>
+</head>
+<body>
+	<div id="toplevel" class="container">
+		<h2>Brass Pill</h2>
+		<div class="media">
+			<div class="media-left">
+				<img src="bullets.jpg" class="media-object" style="width:60px">
+			</div>
+			<div class="media-body">
+				<p style="margin-top: 0.25cm; font-style: italic; font-size: large">"I don't hate Atheists. Anti Theists are the ones I can't really stand."</p>
+			</div>          
+		</div>
+
+		<button id="generate" type="button" class="btn btn-danger btn-large">Take the Pill!</button>
+		<button id="back" type="button" class="btn btn-primary btn-large">Go back!</button>
+
+	
+	</div>
+
+	<div class="container">
+	  <div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+		
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <button type="button" class="close" data-dismiss="modal">&times;</button>
+			  <h4 class="modal-title">Oh dear...</h4>
+			</div>
+			<div class="modal-body">
+			  <p style="font-size: 200%">Mr. Brass is out of pills!</p>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		  </div>
+		  
+		</div>
+	  </div>
+	</div>  
+	
+	<script>
+	function hiliter(word, element) {
+	var rgxp = new RegExp(word, 'g');
+	var repl = '<mark>' + word + '</mark>';
+	element.innerHTML = element.innerHTML.replace(rgxp, repl);
+}
+//hiliter('Carrier', document.getElementById("smth"));
+	</script>
+
+	<script>
+		var clickSound = new Audio("https://instaud.io/_/2c8F.mp3");
+
+		function generateInjun() {
+			if (brassList.length > 0) {
+				var index = Math.floor(Math.random() * brassList.length);
+				var rand = brassList[index];
+
+				var toplevel = document.getElementById("toplevel");
+				var brassString = '<div class="media"><div class="media-left"><img src="brass.jpg" class="media-object" style="width:60px"></div><div class="media-body"><h4 class="media-heading">Mr. Brass</h4><p>' + rand + '</p></div></div><hr>';
+
+				if (rand.search('debating anti vaxers, mythicists , Young Earth Creationists') != -1)
+				{
+					brassString = '<div class="media"><div class="media-left"><img src="brass.jpg" class="media-object" style="width:60px"></div><div class="media-body"><h4 class="media-heading">Mr. Brass</h4><p>' + rand + '</p>' + '<div class="media"><div class="media-left"><img src="brass.jpg" class="media-object" style="width:60px"></div><div class="media-body"><h4 class="media-heading">Mr. Brass</h4><p>When you refuse them debates and make them have to go completely on their own I think that helps more.</p></div></div></div></div><hr>';
+				}
+
+				toplevel.insertAdjacentHTML('beforeend', brassString);
+				brassList.splice(index, 1);
+				clickSound.pause();
+				clickSound = new Audio("https://instaud.io/_/2c8F.mp3");
+				clickSound.play();
+			}
+
+			else
+			{
+				$('#myModal').modal('show');
+			}
+		}
+		document.getElementById("generate").addEventListener("click", generateInjun);
+
+		function goBack() {
+			window.location.href = "index.html";
+		}
+
+		document.getElementById("back").addEventListener('click', goBack);
+
+	</script>
+</body>
+</html>
